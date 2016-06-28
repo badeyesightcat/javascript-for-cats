@@ -57,55 +57,55 @@ OK(Minions 에 나온 Bob 의 목소리로 *역자 주), 이 문장들 중 하�
 
 ### <a id="values" href="#values">#</a> 값과 변수
 
-**값Values** 은 자바스크립트에서 가장 간단한 구성요소야. `1` 은 값이야, `true` is a value, `"hello"` is a value, `function() {}` is a value, the list goes on! There are a handful of different **types** of values in JavaScript but we don't need to go over them all right away &mdash; you will learn them naturally the more you code!
+**값Values** 은 자바스크립트에서 가장 간단한 구성요소야. `1` 은 값이야, `true` 도 값이야, `"hello"` 도 값이고, `function() {}` 도 값이야, 목록은 끝없이 나열될 수 있어! 자바스크립트에는 수많은 다른  **종류types** 의 값이 있지만 지금 당장 그 모든 걸 볼 필욘 없어 — 네가 코드를 더 많이 짤 수록 자연스럽게 알게 될 거야!
 
-To store values we use things called **variables**. The word 'variable' means 'can change' and is used because variables can store many different types of values and can change their value many times. They are pretty much like mailboxes. We put something in a variable, like our sentence, and then give the variable an address that we can use to look up the sentence later. In real life mailboxes have to have PO Box numbers but in JavaScript you usually just use lowercase letters or numbers without any spaces.
+값을 저장하기 위해서 우린 **변수variables**라고 불리는 걸 사용해.  'variable'라는 말은 '변할 수 있음'을 의미하고 변수가 많은 다른 종류의 값들을 저장할 수 있고 수없이 많이 그 값을 바꿀 수 있기 때문에 사용되는 거야. 이건 꼭 우편함 같아. 변수에 뭔가를 넣잖아. 예를 들면 우리 문장 같은 거 말이야. 그리고 나중에 그 문장을 찾아 볼 수 있게 그 변수에 주소를 줘. 실제로 우편함은 PO Box 번호를 가져야 해. 그런데 자바스크립트에선 보통은 공백없이 소문자나 숫자를 사용해.
 
 ![console](images/console-variables.gif)
 
-`var` is shorthand for variable and the `=` means *store the thing on the right-hand side in the thing on the left-hand side*. Also as you can see, now that we are storing our sentence in a variable the console doesn't just return our sentence right away, but instead gives us `undefined` which means *there was nothing to return*.
+`var` 는 variable 의 줄임말이야. 그리고 `=` 는 오른쪽의 것을 왼쪽의 것에 저장 하라는 의미야. 그리고 또 볼 수 있는 것처럼, 문장을 변수에 저장하기 때문에 콘솔이 그냥 바로 문장을 다시 돌려주진 않아. 대신에 `undefined` 를 내놓는데 이건 *돌려줄 것이 아무것도 없다는 거야*.
 
-If you simply type a variable name into the console it will print out the value stored in that variable. A note about variables is that by default they go away when you switch to a different page. If I were to hit the Refresh button in Chrome, for example, my `dogSentence` variable would get wiped and it would be like it never existed. But don't worry about this too much for now &mdash; you can just hit the up or down arrows on your keyboard while in the console to go through everything you've entered in recently.
+그냥 간단히 변수 이름을 콘솔에 치면 변수에 저장된 값을 표시해 줄거야.  변수에 대해 주의할 점은 다른 페이지로 이동할 때 기본적으로 변수가 없어진다는 거야. 만약에 크롬의 새로고침 버튼을 누른다면 가령, 내  `dogSentence` 변수는 지워지고 마치 한번도 있었던 적이 없는 것과 같을 거야. 그런데 지금 이걸 너무 걱정하지마 &mdash; 그냥 위 아래 방향 버튼을 눌러서 콘솔에 최근에 입력했던 모든 걸 살펴볼 수 있어.
 
-### <a id="functions" href="#functions">#</a> Functions
+### <a id="functions" href="#functions">#</a> 함수
 
-Now that we have our sentence stored in a variable, let's change a word stored in it!  We can do this by performing a *function*.  *Functions* are a type of value that, well, serve a specific *function* (AKA purpose or action) for us. Calling them "actions" sounded weird I guess so they went with the word "function" instead.
+변수에 문장을 저장했으니, 그 안의 단어를 바꿔보자! 바로 *함수function*를 실행해서 할 수있다구. *함수Functions*는 값의 한 형태로 특별한 기능(또는 목적이나 행동이라고 해도 돼)을 취급해. "행동actions" 이라고 부르는 건 내가 생각하기에도 좀 이상하니깐 그 대신에 "함수function"로 부르는 거야.
 
-JavaScript has a function called `replace` that does exactly what we want! Functions take in any number of values in their parentheses (zero, one or many) and return either nothing (`undefined`) or the changed string. The `replace` function is available to use on any strings and takes in two values: the characters to take out and the characters to swap in. It gets confusing to describe these things so here is a visual example:
+자바스크립트는 `replace` 라는 정확히 우리가 원하는 함수를 가지고 있어!  함수는 괄호안에 매개변수를 원하는 만큼 가질 수 있어(없거나 1개 혹은 아주 많을 수도 있어) 그리고 아무 것도 돌려주지 않거나 (`undefined`) 바뀐 문자열을 돌려줘. 이 `replace` 함수는 어떤 문자열에도 사용가능하고 두 개의 값을 가지는데 빼낼 문자랑 바꿔 넣을 문자야. 여기서 말로 설명하는 건 좀 헷갈리니깐 내가 직접 보여줄게:
 
 ![console](images/console-replace.gif)
 
-Notice how the value of `dogSentence` is the same even after we run `replace` on it? This is because the `replace` function, (and most JavaScript functions for that matter) takes the value we give it and returns a **new value**, without modifying the value we passed in. Since we didn't store the result (there is no `=` on the left side of the replace function) it just printed out the return value in our console.
+ `dogSentence` 의 값이 함수 `replace` 적용 후에도 전과 같은 걸 눈치챘어?  이게 왜 그러냐면, `replace` 함수가(그리고 대부분의 자바스크립트 함수가 이 부분에선) 우리가 준 값을 가져가고 **새 값new value**을 반환해, 그런데 우리가 전달한 값을 수정하진 않아. 결과를 저장하지 않아서 ( replace 함수의 왼쪽에, `=` 표지가 없지? 그렇지?) 그냥 콘솔에 반환값을 표시한 거 뿐이야.
 
-### <a id="standard-library" href="#standard-library">#</a> The "standard library"
+### <a id="standard-library" href="#standard-library">#</a> "표준 라이브러리"
 
-You might be wondering what other functions are available in JavaScript. The answer: A TON. There are lots **built in, standard libraries** that you can learn about at MDN (A site run by Mozilla that has lotsa nifty information about web technologies). For example [here is the MDN page on JavaScript's Math object](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math).
+아마 자바스크립트의 다른 이용할 수 있는 함수들은 어떤 것들이 있을 지 궁금할 거야. 답은: 완전 많음. 이야. 굉장히 많은 **내장 (객체), 표준 라이브러리들built in, standard libraries** 이 있는데 MDN(Mozilla 가 운영하는데 웹기술에 관련된 개쿨한 정보가 많은 사이트야)에서 배울 수 있어. 예를 들면 [이곳이 MDN의 자바스크립트 Math 객체 페이지](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math)야.
 
-### <a id="third-party-javascript" href="#third-party-javascript">#</a> Third-party JavaScript
+### <a id="third-party-javascript" href="#third-party-javascript">#</a> 제3소프트웨어 자바스크립트
 
-There is also a lot of JavaScript code available that is **not built in**. JavaScript from third parties is usually referred to as a "library" or "plugin". One of my favorites is called **Underscore.js**. Let's go and grab it and load it into our page! First go to the Underscore site, [http://underscorejs.org/](http://underscorejs.org/), click on the download link (I usually use development versions because they are easier to read but both will give you the same basic functionality), and then copy all the code onto your clipboard (you can use Select All from the Edit menu to select everything). Then paste it into your console and hit enter. Now your browser has a new variable in it: `_`. Underscore gives you a ton of helpful functions to play with. We'll learn more about how to use them later.
+**그 안에 지어지지 않았지만not built in**사용가능한 자바스크립트 코드가 많아. 제삼자 위치에 있는 자바스크립트는 보통 "라이브러리" 나 "plugin" 으로 불려. 내가 젤 좋아하는 것 중에 하나가 **Underscore.js**라고 불리는 거야. 가져와서 우리 페이지에 불러와 보자! 우선 Underscore 사이트[http://underscorejs.org/](http://underscorejs.org/)에 가서, 다운로드 링크를 클릭해.(난 읽기가 쉬워서 보통 개발버전을 사용하는데, 둘 다 동일한 기본 기능을 제공할 거야.), 그리고 나서 클립보드의 모든 코드를 복사해 (모든 걸 선택하기 위해서 수정 메뉴의 모두 선택하기 를 사용할 수 있어). 그리고 콘솔에 붙여넣고 엔터키를 눌러봐. 이제 네 브라우저가 그 안에 새 변수를 가지고 있을 거야: `_`. Underscore 는 놀아볼 유용한 함수를 엄청 많이 제공해. 이거에 대해선 좀 있다 더 알아보자.
 
 ![console](images/underscore.gif)
 
-### <a id="writing-functions" href="#writing-functions">#</a> Making new functions
+### <a id="writing-functions" href="#writing-functions">#</a> 함수 새로 만들기
 
-You aren't limited to using other peoples functions &mdash; you can also write them yourself. It's pretty easy! Let's make a function called `makeMoreExciting` that adds a bunch of exclamation points to the end of a string.
+다른 사람들의 함수만 사용하란 법은 없어 &mdash; 네가 직접 만들 수도 있어. 굉장히 쉽다구! 문장의 뒤에 감탄사 부호 한 웅큼을 더하는 `makeMoreExciting` 함수를 만들어 보자.
 
     function makeMoreExciting(string) {
       return string + '!!!!'
     }
 
-In my head I read it out loud like this: "there's a function called 'make more exciting' that takes in a string and returns a new copy of that string that has a bunch of exclamation points at the end". Here is how we would write this in the console manually if we weren't using a function:
+내 머리속에선 이렇게 소리내 읽게 되네: "'make more exciting' 이란 함수가 있어. 이건 한 문자열을 받아서 그거의 새로운 복제물을 돌려주는데, 그 끝에 감탄사 부호 한 웅큼을 가지고 있어." 함수를 사용하지 않는다면, 어떻게 직접 콘솔에 쓰는 지 보여줄게:
 
 ![console](images/custom-function-manually.gif)
 
-The expression `string + '!!!!'` returns a new string and our variable called `string` stays the same as before (since we never updated it to anything else with `=`).
+`string + '!!!!'` 라는 표현은 새로운 문자열을 돌려주고 `string` 이라 불리는 우리 변수는 전과 같이 유지돼.(우리가 `=`로 다른 변수에 갱신해서 저장하지 않았기 때문이야).
 
-Let's use our function instead of doing it manually. First, paste the function into the console and then **call** the function by **passing in** a string:
+직접 적지 말고 우리 함수를 사용해 보자. 우선 콘솔에 그 함수를 붙여넣고 그 함수에 문자열을 매개변수로 **전달passing in** 하면서 그 걸 **호출call** 해봐:
 
 ![console](images/custom-function-call.gif)
 
-You could also call the same function by passing in a variable that points to a string (in the above example we just typed the string straight in there as a value instead of saving it to a variable first):
+또 문자열을 가르키는 변수를 매개변수로 전달하여 아까 그 함수를 호출할 수도 있어 (위의 예시에선 처음에 변수에 문자열을 저장하는 대신에, 값으로 그냥 문자열을 직접 작성했어):
 
 ![console](images/custom-function-call-variable.gif)
 

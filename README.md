@@ -109,18 +109,18 @@ OK(Minions 에 나온 Bob 의 목소리로 *역자 주), 이 문장들 중 하�
 
 ![console](images/custom-function-call-variable.gif)
 
-The line `makeMoreExciting(sentence)` is equivalent to saying `sentence + '!!!!'`. What if we wanted to **modify in-place** (aka update) the value of sentence? Simply save the return value of the function back into our `sentence` variable:
+`makeMoreExciting(sentence)` 줄은 `sentence + '!!!!'`처럼 말하는 것과 동등해. 만약에 문장의 값을 **동일한 자리에서 수정modify in-place** (갱신update)하길 원했다면? 만약에 그렇다면 그냥 함수의 반환값을 `sentence` 변수에 다시 저장하면 돼:
 
     var sentence = "time for a nap"
     sentence = makeMoreExciting(sentence)
 
-Now `sentence` will have the exclamation marks in it! Note that you only have to use `var` when you are **initializing** a variable &mdash; the first time you ever use it. After that you shouldn't use `var` unless you want to re-initialize (reset/clear/empty) the variable.
+이제 `sentence` 는 감탄사 부호를 가질 거야! 변수를 **초기화initializing** 할 때만 `var`를 사용해야 한다는 걸 잊지마 &mdash; 그러니깐 그걸 완전 처음 사용할 때 말이야. 그 다음엔 `var` 를 사용하면 안돼.  변수를 다시 초기화(재설정/청소/비우기)하려는 게 아니라면 말이야.
 
-What would happen if we took out the `return` statement in our function?
+만약에 함수안에서 `return` 문장을 빼면 어떻게 될까?
 
 ![console](images/custom-function-no-return.gif)
 
-Why is `sentence` empty? Because functions return `undefined` by default! You can choose to return a value by `return`ing something. Functions should take in a value and, if they change the value or create a new value that is supposed to be used later, `return` a value (fun fact: a fancy term for this style is *functional programming*). Here is another function that doesn't return anything but instead uses a different method to show us the output:
+왜 `sentence` 가 빈 걸까? 함수가 `undefined` 를 기본으로 반환하기 때문이지! 뭔가를 `return`하면서 값을 반환하는 걸 택할 수 있어. 함수는 값을 취해야 하고, 만약에 함수가 값을 바꾸거나 나중에 사용될 예정인 다른 값을 생성하면, 어떤 값을 `return` 해 (재밌는 건 이러한 걸 나타내는 멋진 용어가 바로 *기능적인 프로그래밍functional programming* 이야). 여기 어떤 것도 반환하지 않는 대신에 결과를 보여주기 위해 다른 방법을 사용하는 또 다른 함수가 있어:
 
 ```js
 function yellIt(string) {
@@ -130,18 +130,18 @@ function yellIt(string) {
 }
 ```
 
-This function, `yellIt`, uses our previous function `makeMoreExciting` as well as the built-in String method [toUpperCase](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/toUpperCase). Methods are just a name for a function when it belongs to something &mdash; in this case `toUpperCase` is a function that belongs to `String` so we can refer to it as either a method *or* a function. `makeMoreExciting` on the other hand doesn't belong to anyone so it would be technically incorrect to refer to it as a method (confusing, I know).
+이 함수, `yellIt`,은 우리의 이전 함수인 `makeMoreExciting` 와 내장 객체인 문자열 메소드인 [toUpperCase](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/toUpperCase)를 사용해. 메소드method 는 그냥 어떤 뭔가에 속할 때의 함수 이름이야 &mdash; 이 경우엔 `toUpperCase` 는 `String` 에 속한 함수인데 그래서 이걸 메소드 *혹은or* 함수 둘 모두로 부를 수 있어. 반면에 `makeMoreExciting` o는 다른 뭔가에 속하지 않아서 이걸 메소드로 부르는 건 기술적으로 옳지 않아. (헷갈리지, 나도 알아).
 
-The last line of the function is another built-in that simply takes in any values that you give it and prints them out into the console.
+이 함수의 마지막 줄은 다른 내장 객체인데 함수에 매개변수로 준 어떠한 값이던지 가져가서 콘솔에 표시해줘.
 
 ![console](images/custom-function-console-log.gif)
 
-So is there something wrong with the above `yellIt` function? It depends! Here are the two major types of functions:
+그래서 뭔가 위의 `yellIt` 함수에 뭔가 잘 못된 게 있나? 그건 때에 따라 달라! 아래에 두개의 함수의 주된 형태가 있어:
 
-  - functions that modify or create values and return them
-  - functions take in values and perform some action that cannot be returned
+  - 값을 수정하고 생성하고 그것을 돌려주는 함수
+  - 값을 가져가서 (반환될 수 없는)어떤 행동을 하는 함수
 
-`console.log` is an example of the second type of function: it prints things out to your console &mdash; an action that you can see with your eyes but that cannot be represented as a JavaScript value. My own rule of thumb is to try to keep the two types of functions separate from each other, so here's how I would rewrite the `yellIt` function:
+`console.log` 는 두 번째 형태 함수의 한 예야: 콘솔에 무언가를 표시하는 거야 &mdash; 눈으로 볼 수 있는 행동이지만 자바스크립트 값으로는 표시될 수 없지. 내 경험상 두 형태의 함수를 각각 분리시키도록 하는 게 좋아, 그래서 이 `yellIt` 함수를 이렇게 다시 쓰겠어:
 
 ```js
 function yellIt(string) {
@@ -152,13 +152,13 @@ function yellIt(string) {
 console.log(yellIt("i fear no human"))
 ```
 
-This way `yellIt` becomes more **generic**, meaning it only does one or two simple little things and doesn't know anything about printing itself to a console &mdash; that part can always be programmed later, outside the function definition.
+이 방법으로 `yellIt` 가 좀 더 **일반적generic**, 이 되지, 단지 간단한 1~2개의 일을 할 뿐 콘솔에 자신을 표시하는 것에 대해선 아무것도 아는 게 없는 걸 의미해 &mdash; 그 부분은 나중에 언제라도 함수 선언의 바깥에서 개발될 수 있어.
 
-### <a id="loops" href="#loops">#</a> Loops
+### <a id="loops" href="#loops">#</a> 반복
 
-Now that we have some basic skills under our belt (*Author's note: do cats even wear belts?*) we can start being lazy. What?! Yes, that's right: programming is about being lazy. Larry Wall, inventor of the Perl programming language, called laziness the [most important virtue](http://c2.com/cgi/wiki?LazinessImpatienceHubris) of a good programmer. If computers didn't exist you would have to do all sorts of tedious tasks by hand, but if you learn to program you can lay in the sun all day while a computer somewhere runs your programs for you. It is a glorious lifestyle filled with relaxation!
+우리 벨트 아래 (*저자주: 고양이가 벨트도 차나?*) 몇 가지 기본 기술을 가지고 있으니깐 이제 우리 좀 게을러 질 수 있어. 뭐?! ㅇㅇ, 맞아 진짜야: 프로그래밍은 게을러지는 거에 관한 거야. Perl 프로그래밍 언어 발명자인 래리 월Larry Wall 이 게으름을 좋은 개발자의 [가장 중요한 덕목](http://c2.com/cgi/wiki?LazinessImpatienceHubris) 이라고 불렀어. 만약에 컴퓨터가 존재하지 않으면 넌 아마 모든 종류의 지루한 작업을 직접 해야 할 거야, 그런데 네가 프로그램을 배운다면 컴퓨터가 어딘가에서 네 프로그램을 돌리는 동안에 넌 태양 아래 누워있을 수 있어. 이게 바로 안정으로 가득한 화려한 삶이야!
 
-Loops are one of the most important ways to harness the power of a computer. Remember `Underscore.js` from earlier? Make sure you have it loaded in the page (remember: you can just hit the up arrow on your keyboard a few times and then hit `Enter` to load it in again if you need to) and try copy/pasting this into your console:
+반복은 컴퓨터의 힘을 이용하는 가장 중요한 방법 중의 하나야. 아까 말한 `Underscore.js` 기억해? 페이지에 로드한 다음에(기억나지? 키보드 방향키중에 위를 향한 화살표 버튼을 몇 번 누르면 그 전에 입력했던 것들 목록을 훑어가면서 네가 필요한 게 나오면 `Enter` 만 누르면 돼.) 콘솔에 복사 및 붙여넣기 해봐:
   
 ```js
 function logANumber(someNumber) {
@@ -167,11 +167,11 @@ function logANumber(someNumber) {
 _.times(10, logANumber)
 ```
 
-This code uses the [times](http://underscorejs.org/#times) method of Underscore which takes in 1 number and 1 function and then starts from 0 and for 10 steps counts up by 1, calling the function with the number each step of the way.
+이 코드는 Underscore 의 [times](http://underscorejs.org/#times) 메소드를 사용해, 이건 하나의 숫자와 하나의 함수를 취하고선 0부터 시작해서 10번, 매번 1씩 증가하면서 단계별로 해당 숫자와 함께 그 함수를 호출하는 거야.
 
 ![console](images/times-loop.png)
 
-If we were to manually write out what `times` is doing in the above code it would look like this:
+위의 코드에서 `times` 이 하는 걸 그냥 직접 적으면 아래처럼 보일 거야:
 
 ```js
 logANumber(0)
@@ -186,31 +186,31 @@ logANumber(8)
 logANumber(9)
 ```
 
-But cats refuse to do unnecessary manual work like this so we must always ask ourselves, *"am I doing this in the laziest way possible?"*.
+근데 냥이들은 불필요한 손작업을 안 할거야. 그러니깐 항상 이렇게 스스로 물어봐야해, *"가능한  게으르게 하고 있는 거 맞나?"*.
 
-So why is this called looping? Think of it like this: If we were to write out a list of 10 numbers (from 0 to 9) using a JavaScript Array it would look like this:
+그래서 왜 이게 반복이라고 불리냐고? 이렇게 생각해봐: 자바스크립트 배열을 이용해서 0 부터 9 까지 10개의 숫자 목록을 적는다고 생각해보면 아래처럼 보일 거야:
 
 ```js
 var zeroThroughTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-What `times` really does is visit each number and repeat a task: in the example above the task was to call the `logANumber` function with the current number. Repeating tasks in this way is referred to as *looping over* the Array.
+`times` 가 하는 건 각각의 숫자를 방문해서 작업을 반복하는 거야: 위의 작업의 예제는 현재 숫자와 함께 `logANumber` 함수를 호출하는 거야. 이렇게 작업을 반복하는 게 바로 배열Array을 관통하는 *반복looping over* 이라고 불려.
 
-### <a id="arrays" href="#arrays">#</a> Arrays
+### <a id="arrays" href="#arrays">#</a> 배열
 
-I've mentioned these a few times but let's spend a minute learning about them. Imagine you need to keep track of all your buddies. Well, an Array will do just fine. Think of an Array like a sorted list that you can keep *tons* of stuff in.
+몇 번 언급하긴 했었는데 좀 더 시간을 써서 이걸 좀 배워보자. 네가 네 모든 친구들의 정보를 얻어야 한다고 생각해보자구. 음, 배열Array이 딱 좋을 거 같아. 배열을 *수 만 가지 것tons*들을 담을 수 있는 어떤 분류된 목록이라고 생각해봐.
 
-This is how you make one:
+이렇게 만드는 거야:
 
 ```js
 var myCatFriends = ["bill", "tabby", "ceiling"]
 ```
 
-Sweet! Now you have a list of your cat buddies.
+스윗! 이제 네 냐옹 친구들의 목록을 가졌네.
 
-Elements (that is what you call a single item in an array) that are stored within arrays start at 0 and count up from there. So `myCatFriends[0]` returns `bill` and `myCatFriends[1]` returns `tabby`... etc etc.
+배열 안에 저장된 요소들(어떤 배열의 하나의 요소를 이렇게 불러)은 0 부터 시작해서 늘어나. 그래서 `myCatFriends[0]` 는 `bill` 을 반환하고 `myCatFriends[1]` 은 `tabby`... 등을 돌려줘.
 
-To get buddies out of your brand new Array you can just access an element directly like so: 
+네 새로운 배열의 친구들을 얻으려면 그냥 쉽게 이렇게 한 요소에 직접 접근해도 돼:
 
 ```js
 console.log(myCatFriends[0])
@@ -218,17 +218,17 @@ console.log(myCatFriends[0])
 
 ![console](images/array-access.png)
 
-If you made a brand new cat friend at the hippest cat club the other night and you want to add them to your list it is super simple: `myCatFriends.push("super hip cat")`.
+만약 전날 밤에 냥쿨한 괭이클럽에서 새로운 괭이 친구를 만들고 그 친구들을 네 친구 목록에 넣고 싶다면 그건 진짜 쉬워: `myCatFriends.push("super hip cat")`.
 
-To check that the new cat made it into your array you can use `.length`:
+새로운 괭이 친구가 배열에 만들어졌는 지 확인하려면 `.length`를 사용할 수 있어: 
 
 ![console](images/array-push-length.png)
 
-Notice how `push` returned the length? Handy! Also take note that arrays will always **preserve ordering** which means they will remember the order in which you added or defined things. Not everything in JavaScript preserves ordering so remember this special property of Arrays!
+`push` 가 요소 숫자를 돌려주는 방법을 눈치챘어? 완전 편리해! 글고 배열은 언제나  **순서를 지킬 거preserve ordering**라는 걸 주의해서 봐봐. 이건 바로 뭔가를 추가하거나 정의하는 순서를 항상 기억할 거라는 거야. 자바스크립트의 모든 것들이 순서를 지키진 않으니깐 배열의 이 특별한 속성을 기억해 두라구!
   
-### <a id="objects" href="#objects">#</a> Objects
+### <a id="objects" href="#objects">#</a> 객체
 
-Arrays are good for lists, but for other tasks they can be hard to work with. Consider our array of cat friends. What if you also wanted to store more than just names?
+배열은 목록에 알맞아, 근데 다른 작업들을 하기 위해선 좀 어려울 지도 몰라. 우리 괭이 친구들 배열을 생각해봐. 만약에 그냥 이름을 추가하는 거 말고도 더 저장하고 싶은 게 있으면 어쩌지?
 
 ```js
 var myCatFriends = ["bill", "tabby", "ceiling"]
@@ -236,11 +236,11 @@ var lastNames = ["the cat", "cat", "cat"]
 var addresses = ["The Alley", "Grandmas House", "Attic"]
 ```
 
-Sometimes it is nice to have all of the addresses or names in one variable. But sometimes you have a cat in mind, let's say Bill, and you just want to look up that cat's address. With arrays it takes a lot of work because you can't just say 'hey array, give me Bill's address' because 'Bill' is in one array and his address is in a totally different array.
+때론 주소나 이름 모두를 하나의 변수에 가지고 있는 게 좋아. 근데 때론 어떤 냥이가 있어, Bill 이라고 하자, 그리고 그 냥이의 주소를 찾아보길 원한다고 치자구. 배열로는 일처리를 많이 해야 해. 그냥 막 '헤이, 배열군! Bill  주소 좀 알려줘' 라고 말할 순 없거든. 왜냐면 'Bill'은 그냥 어떤 배열에 있고 그 냥이의 주소는 완전히 다른 배열에 있거든.
 
 ![console](images/array-lookup.png)
 
-This can be brittle because if our arrays change and we add a new cat to the beginning we would have to also update our `billsPosition` variable to point to the new location of Bill's information in the arrays! Here is a easier to maintain way to store information like this using objects:
+이건 좀 다루기 어려워, 왜냐면 우리가 가진 배열들이 변할 수도 있고 배열의 처음에 새로운 냥이를 추가하면 배열안에서 Bill 의 정보에 대한 새 장소를 나타내는 `billsPosition` 변수를 바꿔줘야 하거든! 이렇게 객체를 사용해서 정보를 저장하는 좀 더 쉬운 관리 방법이 여기에 있어:
 
 ```js
 var firstCat = { name: "bill", lastName: "the cat", address: "The Alley" }
@@ -248,36 +248,36 @@ var secondCat = { name: "tabby", lastName: "cat", address: "Grandmas House" }
 var thirdCat = { name: "ceiling", lastName: "cat", address: "Attic" }
 ```
   
-Why would we do it this way? Because now we have a variable for each cat that we can use to get that cats values in a more convenient and readable way. 
+왜 이렇게 해야하는 거야? 각각의 냥이에 대한 변수를 가지고 있어서 좀 더 편하고 읽기 쉬운 방법으로 각 냥이 변수에 대한 정보를 얻을 수 있기 때문이야.
 
 ![console](images/object-lookup.png)
 
-You can think of Objects like keys on a keyring. Each one is for a specific door and if you have nice labels on your keys you can open doors very fast. In fact, the things on the left hand side of the `:` are called **keys** (are also known as **properties**) and the things on the right hand side are **values**.
+객체를 마치 열쇠고리의 열쇠 하나와 같이 생각할 수도 있어. 각각의 열쇠는 개별 문에 대한 것이고 만약 열쇠에 라벨을 잘 붙여놓는다면 문을 정말 빨리 열 수 있을 거야. 사실말야, `:`(콜론)의 왼쪽에 있는 건 **keys** 라고 불리고 (혹은 속성 **properties**이라고도 알려져 있어)  그 오른쪽에 있는 건 **값values**이라고 불려.
 
 ```js
-// an object with a single key 'name' and single value 'bill'
+// 단일키'name' 과 단일값'bill'으로 이뤄진 객체
 { name: 'bill' }
 ```
 
-So why would you ever use arrays if you can just put your data in objects? Because objects don't remember the order of the keys that you set. You might enter in an object like this:
+그럼 객체에 정보를 넣을 수 있는데 왜 이전에 배열을 사용한 거지? 그건 객체는 네가 설정한 키의 순서를 기억하지 않기 때문이야. 어떤 객체를 이렇게 입력할 수도 있어:
 
 ```js
 { date: "10/20/2012", diary: "slept a bit today", name: "Charles" }
 ```
 
-But the computer could give it back to you like this:
+근데 컴퓨터는 아래처럼 너한테 되돌려 줄 수도 있어:
 
 ```js
 { diary: "slept a bit today", name: "Charles", date: "10/20/2012" }
 ```
 
-Or like this!
+혹은 이렇게!
 
 ```js
 { name: "Charles", diary: "slept a bit today", date: "10/20/2012" }
 ```
 
-So you can't ever trust the order of keys in objects. If you wanna get REALLY fancy you can make an array filled with objects, or an object filled with arrays!
+그래서 넌 객체내의 키 순서를 전혀 믿을 수 없는 거야. 만약에 진짜 완전 멋진 걸 원하면 객체로 이뤄진 배열을 만들 수 있어, 혹은 배열로 이뤄진 객체라던가!
 
 ```js
 var moodLog = [
@@ -295,33 +295,34 @@ var moodLog = [
   }
 ]
 
-// ordered from least to most favorite
+// 가장 덜 좋아하는 것부터 가장 좋아하는 순의 정렬
 var favorites = {
   treats: ["bird sighting", "belly rub", "catnip"],
   napSpots: ["couch", "planter box", "human face"]
 }
 ```
 
-When you combine different things like this you are making **data structures**, just like legos!
+네가 이렇게 다른 것들을 결합할 때 **데이터 구조data structures**를 만드는 거야, 마치 레고처럼!
 
-### <a id="callbacks" href="#callbacks">#</a> Callbacks
+### <a id="callbacks" href="#callbacks">#</a> 콜백(회수/ 호출)
 
-Callbacks aren't really a feature of JavaScript like `Object` or `Array`, but instead just a certain way to use functions. To understand why callbacks are useful you first have to learn about asynchronous (often shortened to async) programming. Asynchronous code by definition is code written in a way that is not synchronous. Synchronous code is easy to understand and write. Here is an example to illustrate:
+사실 Callback호출은 `Object` 나 `Array`, 같은 자바스크립트 특징이 아니야. 그냥 함수를 사용하는 특정 방법이라고 할까? 그런 거야. 그냥 콜백이라고 할게, 콜백이 왜 유용한 건지 이해하려면 우선 비동기적인 프로그래밍asynchronous (주로 짧게 async)을 배워야해. 정의에 의하면, 비동기 코드는 동시에 일어나지 않는 방식으로 작성된 코드야. 동시에 발생하는 코드는 이해하고 작성하기가 쉬워. 묘사하는 예를 보여줄게:
 
 ```js
 var photo = download('http://foo-chan.com/images/sp.jpg')
 uploadPhotoTweet(photo, '@maxogden')
 ```
 
-This synchronous [pseudo-code](http://simple.wikipedia.org/wiki/Pseudocode) downloads an adorable cat photo and then uploads the photo to twitter and tweets the photo at `@maxogden`. Pretty straightforward!
+이건 동시에 일어나는 가상 코드 [pseudo-code](http://simple.wikipedia.org/wiki/Pseudocode) (기계가 아닌 인간의 언어로 쓰인 소스코드 형태인데 알고리즘이 어떻게 필요한 작업을 달성하는 지 보여주기 위해 쓰여.)는 사랑스러운 냥이 사진을 다운로드해서 트위터에 업로드한 다음에 `@maxogden`에게 트윗할거야. 굉장히 직접적이지!
 
-(*Author's note: I @maxogden do happily accept random cat photo tweets*)
+(*작자주: 나 @maxogden 은  언제나 어떤 고양이 사진 트윗이든 기쁘게 받는다궁.*)
+(*역자주: 하지만 번역의 시점에서 작자의 트윗은 @denormalize 으로 변경되었다냥.*)
 
-This code is synchronous because in order for photo to get uploaded to the tweet, the photo download must be completed. This means that line 2 cannot run until the task on line 1 is totally finished. If we were to actually implement this pseudo-code we would want to make sure that `download` 'blocked' execution until the download was finished, meaning it would prevent *any* other JavaScript from being executed until it finished, and then when the download completes it would un-block the JavaScript execution and line 2 would execute.
+이 코드는 동시에 일어나. 왜냐면 사진이 트윗에 업로드되기 위해서 사진 다운로드가 우선 끝나야해서야. 이건 첫번째 줄의 작업이 완전히 끝나기 전엔 두번째 줄의 작업이 실행될 수 없다는 걸 말하는 거야. 만약에 이 가상 코드를 실제로 실행한다면, 다운로드가 끝나기 전까진 `download` 가 실행을 '막길blocked' 바랄거야. 이건 다시 말하면 다운로드가 끝나기 전까진 어떠한 다른 자바스크립트의 실행도 방지되고 다운로드가 끝나자마자 자바스크립트 실행을 막는 것을 풀고 2번째 줄부터 시작될 거라는 걸 의미해.
 
-Synchronous code is fine for things that happen fast, but it's horrible for things that require saving, loading, downloading or uploading. What if the server you're downloading the photo from is slow, or the internet connection you are using is slow, or the computer you are running the code on has too many youtube cat video tabs open and is running slowly? It means that it could potentially take minutes of waiting before line 2 gets around to running. Meanwhile, because all JavaScript on the page is being blocked from being run while the download is happening, the webpage would totally freeze up and become unresponsive until the download is done.
+동시에 일어나는 코드는 빨리 발생하는 뭔가에는 괜찮아. 그런데, 뭔가 저장하고 불러오고, 다운로드하고 업로드를 요구하는 거엔 좀 끔찍할 정도로 부적절해. 만약에 네가 사진을 다운로드 받고 있는 서버가 느리면 어떻게 해, 아니면 네가 사용하고 있는 인터넷 연결이 느릴 수도 있어, 아니면 네가 코드를 돌리고 있는 컴퓨터가 엄청나게 많은 냥이 유투브 동영상을 켜놓은 탭을 가지고 있고 느리거나 하면 말이야. 그건 그러니깐 잠재적으로는 2번째 줄이 돌아가기 전에 몇 분동안 기다릴 수도 있다는 거야. 반면에 다운로드가 되고 있을 때, 페이지내 모든 자바스크립트의 실행이 막혀있으면 웹페이지는 완전히 그냥 멈춰버리고 다운로드가 다 되기 전까진 그냥 아무반응도 없을 거야.
 
-Blocking execution should be avoided at all costs, especially when doing so makes your program freeze up or become unresponsive. Let's assume the photo above takes one second to download. To illustrate how long one second is to a modern computer, here is a program that tests to see how many tasks JavaScript can process in one second.
+실행을 막는 건 그 비용이 얼마가 들더라도 방지되어야 해. 특히 그렇게 하는 건 네가 만든 프로그램을 완전히 얼어버리게 하거나 반응이 없도록 할거야. 위의 사진이 다운로드되는데 일 초가 걸린다고 가정해 보자. 현대의 컴퓨터한테 1초가 얼마나 오랫동안 인지 나타내기 위해서, 여기에 1초 동안 자바스크립트가 실행할 수 있는 작업이 얼마나 많은 지 보여주기 위한 테스트 프로그램이 있어.
 
 ```js
 function measureLoopSpeed() {

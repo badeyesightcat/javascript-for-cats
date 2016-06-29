@@ -350,22 +350,22 @@ measureLoopSpeed()
 
 ![console](images/bash-sleep.png)
 
-자바스크립트는 `sleep` 함수를 가지고 있지 않아. 넌 냐옹이니까 아마 너 스스로에게 이렇게 묻겠지, "왜 내가 잠자는 거랑은 관련도 없는 프로그래밍 언어를 배우는 거지?" 잠깐만 있어봐. Instead of relying on `sleep` to wait for things to happen the design of JavaScript encourages use of functions instead. If you have to wait for task A to finish before doing task B, you put all of the code for task B into a function and you only call that function when A is done.
+자바스크립트는 `sleep` 함수를 가지고 있지 않아. 넌 냐옹이니까 아마 너 스스로에게 이렇게 묻겠지, "왜 내가 잠자는 거랑은 관련도 없는 프로그래밍 언어를 배우는 거지?" 잠깐만 있어봐. 뭔가 발생하기를 기다리기 위해 `sleep` 에 의지하기 보단 자바스크립트 고안은 함수를 사용하라고 권장해. 만약에 네가 업무B를 하기 전에 업무A가 끝나기를 기다려야 하면, 업무B를 위한 모든 코드를 한 함수에 넣고 업무A가 완료되면 그 때 그 함수를 호출하면 돼.
 
-For example, this is blocking-style code:
+가령, 이게 바로 차단방식의 코드야:
 
 ```js
 a()
 b()
 ```
 
-And this is in a non-blocking style:
+이건 비차단방식의 코드야:
 
 ```js
 a(b)
 ```
 
-In the non-blocking version `b` is a callback to `a`. In the blocking version `a` and `b` are both called/invoked (they both have `()` after them which executes the functions immediately). In the non-blocking version you will notice that only `a` gets invoked, and `b` is simply passed in to `a` as an argument.
+차단이 없는 방식에서 `b`가 바로 `a` 에 대한 콜백이야. 차단방식에선 `a`와 `b` 둘 모두 호출되거나/발동되는 거야(둘 모두 뒤따르는 `()`를 가지는데 이건 함수를 즉시 실행하는 거야). 차단이 없는 방식에서 아마 `a`만 발동되고 `b`는 단순히 `a`의 In the non-blocking version you will notice that only `a` gets invoked, and `b` is simply passed in to `a` as an argument.
 
 In the blocking version, there is no explicit relationship between `a` and `b`. In the non-blocking version it becomes `a`'s job to do what it needs to do and then call `b` when it is done. Using functions in this way is called callbacks because your callback function, in this case `b`, gets called later on when `a` is all done.
 

@@ -329,28 +329,28 @@ function measureLoopSpeed() {
   var count = 0
   function addOne() { count = count + 1 }
 
-  // Date.now() returns a big number representing the number of
-  // milliseconds that have elapsed since Jan 01 1970
+  // Date.now() 는 어떤 큰 수를 반환하는데,
+  // 이 수는 1970년 1월 1일 이후로 누적된 1/1000 초의 숫자야.
   var now = Date.now()
 
-  // Loop until Date.now() is 1000 milliseconds (1 second) or more into
-  // the future from when we started looping. On each loop, call addOne
+  // 우리가 반복을 시작할 때부터 Date.now()가 1000 밀리초(즉, 1초)가 되거나 그 이상이 될 때까지 반복. 
+  // 각각의 반복에서 addOne 함수를 호출해.
   while (Date.now() - now < 1000) addOne()
   
-  // Finally it has been >= 1000ms, so let's print out our total count
+  // 마지막에 그 값이 1000ms 보다 크거나 같아지면 우리의 총 count를 출력해보자.
   console.log(count)
 }
 
 measureLoopSpeed()
 ```
 
-Copy-paste the above code into your JavaScript console and after one second it should print out a number. On my computer I got `8527360`, approximately **8.5 million**. In one second JavaScript can call the `addOne` function 8.5 million times! So if you have synchronous code for downloading a photo, and the photo download takes one second, it means you are potentially preventing 8.5 million operations from happening while JavaScript execution is blocked.
+위의 코드를 복사한 다음 자바스크립트 콘솔 창에 붙여넣기하고 나서 1초가 지나면 어떤 숫자가 출력될 거야. 내 컴퓨터에서 난 `8527360` 이란 숫자가 나왔어, 대략 **8.5 million** 이지. 1초 동안에 자바스크립트가 `addOne` 함수를 850 만번 정도 호출할 수 있다는 거야! 만약에 네가 동시에 발생하는 코드(사진을 다운로드하는)를 가지고 있다면, 사진을 다운로드하는 데 1초가 걸리는 거야, 다시 말하면 자바스크립트 실행이 가로막혀서 잠재적으론 850만개의 실행이 발생치 못하도록 막는 거랑 같은 거야.
 
-Some languages have a function called `sleep` that blocks execution for some number of seconds. For example here is some [`bash`](http://en.wikipedia.org/wiki/Bash_%28Unix_shell%29) code running in `Terminal.app` on Mac OS that uses `sleep`. When you run the command `sleep 3 && echo 'done sleeping now'` it blocks for 3 seconds before printing out `done sleeping now`.
+몇몇 언어들은 몇 초간 실행을 막는 `sleep` 이라는 함수를 가지고 있어. 예를 들면, `sleep` 을 사용하는 Mac OS 의 `Terminal.app` 에서 돌아가는 [`bash`](http://en.wikipedia.org/wiki/Bash_%28Unix_shell%29) 코드가 있어. `sleep 3 && echo 'done sleeping now'` 라는 명령을 실행시키면 `done sleeping now` 를 출력하기 전에 3초간 차단될 거야.
 
 ![console](images/bash-sleep.png)
 
-JavaScript doesn't have a `sleep` function. Since you are a cat you are probably asking yourself, "Why am I learning a programming language that does not involve sleeping?". But stay with me. Instead of relying on `sleep` to wait for things to happen the design of JavaScript encourages use of functions instead. If you have to wait for task A to finish before doing task B, you put all of the code for task B into a function and you only call that function when A is done.
+자바스크립트는 `sleep` 함수를 가지고 있지 않아. 넌 냐옹이니까 아마 너 스스로에게 이렇게 묻겠지, "왜 내가 잠자는 거랑은 관련도 없는 프로그래밍 언어를 배우는 거지?" 잠깐만 있어봐. Instead of relying on `sleep` to wait for things to happen the design of JavaScript encourages use of functions instead. If you have to wait for task A to finish before doing task B, you put all of the code for task B into a function and you only call that function when A is done.
 
 For example, this is blocking-style code:
 

@@ -365,33 +365,33 @@ b()
 a(b)
 ```
 
-차단이 없는 방식에서 `b`가 바로 `a` 에 대한 콜백이야. 차단방식에선 `a`와 `b` 둘 모두 호출되거나/발동되는 거야(둘 모두 뒤따르는 `()`를 가지는데 이건 함수를 즉시 실행하는 거야). 차단이 없는 방식에서 아마 `a`만 발동되고 `b`는 단순히 `a`의 In the non-blocking version you will notice that only `a` gets invoked, and `b` is simply passed in to `a` as an argument.
+차단이 없는 방식에서 `b`가 바로 `a` 에 대한 콜백이야. 차단방식에선 `a`와 `b` 둘 모두 호출되거나/발동되는 거야(둘 모두 뒤따르는 `()`를 가지는데 이건 함수를 즉시 실행하는 거야). 차단이 없는 방식에서 아마 `a`만 발동되고 `b`는 단순히 `a`의 인수로 전달되는 걸 눈치챌거야.
 
-In the blocking version, there is no explicit relationship between `a` and `b`. In the non-blocking version it becomes `a`'s job to do what it needs to do and then call `b` when it is done. Using functions in this way is called callbacks because your callback function, in this case `b`, gets called later on when `a` is all done.
+차단방식에서는, `a` 와 `b` 사이에 명백한 관계가 없어. 차단없는 방식에서는, 필요한 일을 하고 그게 완료되면 `b`를 호출하는 게 `a`의 업무가 되거든. 함수를 이런 방식으로 사용하는 게 바로 콜백이라고 불리는 데 `a`가 모두 완료되면 너의 콜백 함수(이 경우엔 `b`)가 나중에 호출되기 때문이야.
 
-Here is a pseudocode implementation of what `a` might look like:
+여기 `a`와 같은 함수의 가상코드 실행이 있어:
 
 ```js
 function a(done) {
   download('https://pbs.twimg.com/media/B4DDWBrCEAA8u4O.jpg:large', function doneDownloading(error, png) {
-    // handle error if there was one
+    // 에러가 있을 때 에러 처리하기
     if (err) console.log('uh-oh!', error)
     
-    // call done when you are all done
+    // 모든 걸 완료하면 done 호출
     done()
   })
 }
 ```
 
-Think back to our non-blocking example, `a(b)`, where we call `a` and pass in `b` as the first argument. In the function definition for `a` above the `done` argument *is* our `b` function that we pass in. This behavior is something that is hard to wrap your head around at first. When you call a function, the arguments you pass in won't have the same variable names when they are in the function. In this case what we call `b` is called `done` inside the function. But `b` and `done` are just variable names that point to the same underlying function. Usually callback functions are labelled something like `done` or `callback` to make it clear that they are functions that should be called when the current function is done.
+우리의 차단 없는 방식의 예제로 돌아가서 생각해보자, `a`를 호출하고 첫 인수로 `b`를 전달하는 `a(b)`말이야. 위 `a`를 위한 함수 정의에서 `done` 인수는 전달한 `b` 함수야. 이 행동은 처음에 생각하기 어려운 무언가이긴 해. 그들이 함수 안에 있을 때 함수를 호출해서 전달한 인수가 같은 변수 이름을 가지진 않을 거야. 이 경우에 우리가 `b`라고 부르는 건 함수 내부에서 `done`이라고 불려. 그런데 단지 `b`와 `done`이 동일한 내재 함수를 가르키는 변수 이름이야. 보통 콜백 함수들은 현재 함수가 완료되면 호출되어야 하는 함수라는 걸 명백히 하기 위해서 `done` 혹은 `callback`과 같은 무언가로 명명돼.
 
-So, as long as `a` does it's job and called `b` when it is done, both `a` and `b` get called in both the non-blocking and blocking versions. The difference is that in the non-blocking version we don't have to halt execution of JavaScript. In general non-blocking style is where you write every function so that it can return as soon as possible, without ever blocking.
+그래서, `a`가 자신의 작업을 하고 그게 완료되면 `b`를 호출하는 이상, 차단없는 방식과 차단방식 모두에서 `a`와 `b` 둘 다 호출되는 거야. 차이는 차단없는 방식에선 자바스크립트 실행을 중단하지 않아도 된다는 거야. 대개 차단없는 방식은 모든 함수를 작성해 중단없이 가능한 빨리 반환할 수 있도록 하는 곳에 있어.
 
-To drive the point home even further: If `a` takes one second to complete, and you use the blocking version, it means you can only do one thing. If you use the non-blocking version (aka use callbacks) you can do *literally millions* of other things in that same second, which means you can finish your work millions of times faster and sleep the rest of the day.
+좀 더 확실히 납득시키기 위해 말하자면: `a`가 완료되기 까지 1초가 걸리고 네가 차단방식을 사용할 때, 한 번에 한 가지 일밖에 못한다는 걸 의미해. 만약에 차단없는 방식을 사용(콜백을 사용)하면 정말 *말 그대로 수만가지literally millions*의 다른 일을 동시에 할 수 있어, 이건 네 작업을 수 만배 더 빨리 끝내고 하루의 나머지 시간을 잘 수 있다는 거야.
 
-Remember: programming is all about laziness and you should be the one sleeping, not your computer.
+기억해: 프로그래밍은 순전히 게으름에 대한 것이고 잠을 자는 건 네 컴퓨터가 아니라 너여야 해.
 
-Hopefully you can see now that callbacks are just functions that call other functions after some asynchronous task. Common examples of asynchronous tasks are things like reading a photo, downloading a song, uploading a picture, talking to a database, waiting for a user to hit a key or click on someone, etc. Anything that takes time. JavaScript is really great at handling asynchronous tasks like these as long as you take the time to learn how to use callbacks and keep your JavaScript from being blocked.
+다행히도 이제 콜백이 어떤 동시에 발생하지 않는 작업 이후에 다른 함수를 호출하는 함수들이라는 걸 알 수 있을 거야. 비동기 작업의 일반적인 예를 들자면 사진을 읽고, 노래를 다운받고, 사진을 업로드하고 데이터베이스에 말하고 사용자가 어떤 키를 치거나 누군가를 클릭하길 기다리는 것 같은 거야. 무언가 시간이 걸리는 것들 말이야. 자바스크립트는 이런 종류의 비동기적인 작업을 처리하는 데 정말 엄청나. JavaScript is really great at handling asynchronous tasks like these as long as you take the time to learn how to use callbacks and keep your JavaScript from being blocked.
 
 ## The end!
 

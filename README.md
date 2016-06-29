@@ -391,33 +391,33 @@ function a(done) {
 
 기억해: 프로그래밍은 순전히 게으름에 대한 것이고 잠을 자는 건 네 컴퓨터가 아니라 너여야 해.
 
-다행히도 이제 콜백이 어떤 동시에 발생하지 않는 작업 이후에 다른 함수를 호출하는 함수들이라는 걸 알 수 있을 거야. 비동기 작업의 일반적인 예를 들자면 사진을 읽고, 노래를 다운받고, 사진을 업로드하고 데이터베이스에 말하고 사용자가 어떤 키를 치거나 누군가를 클릭하길 기다리는 것 같은 거야. 무언가 시간이 걸리는 것들 말이야. 자바스크립트는 이런 종류의 비동기적인 작업을 처리하는 데 정말 엄청나. JavaScript is really great at handling asynchronous tasks like these as long as you take the time to learn how to use callbacks and keep your JavaScript from being blocked.
+다행히도 이제 콜백이 어떤 동시에 발생하지 않는 작업 이후에 다른 함수를 호출하는 함수들이라는 걸 알 수 있을 거야. 비동기 작업의 일반적인 예를 들자면 사진을 읽고, 노래를 다운받고, 사진을 업로드하고 데이터베이스에 말하고 사용자가 어떤 키를 치거나 누군가를 클릭하길 기다리는 것 같은 거야. 무언가 시간이 걸리는 것들 말이야. 네가 콜백을 사용하는 법을 배우는 시간을 갖고 자바스크립트가 중단되지 않도록 하는 한 자바스크립트는 이런 종류의 비동기적인 작업을 처리하는 데 정말 뛰어나.
 
-## The end!
+## 끝!
 
-This is just the beginning of your relationship with JavaScript! You can't learn it all at once, but you should find what works for you and try to learn all of the concepts here.
+이건 너와 자바스크립트와의 관계에 있어 시작일 뿐이야! 한 번에 모든 걸 배울 순 없지만 네게 알맞은 걸 찾고 여기 나온 모든 개념을 배우도록 노력해봐.
 
-I'd recommend coming back again tomorrow and going through the entire thing again from the beginning! It might take a few times through before you get everything (programming is hard). Just try to avoid reading this page in any rooms that contain shiny objects . . . they can be incredibly distracting.
+내일 다시 와서 시작부터 모든 걸 훑어보길 권장할게! 모든 걸 익히기 전에 아마 몇 번은 봐야 할 거야(프로그래밍은 어려워). 반짝 반짝 빛나는 물건이 있는 방에서 이 페이지를 읽는 걸 피해봐. . . . 엄청나게 집중할 수 없을 거야.
 
-Got another topic you wanna see covered? Open an issue for it [on github](http://github.com/maxogden/javascript-for-cats).
+보고 싶은 다른 주제가 있어? 그거에 대해서 이야기를 꺼내봐 [github에서](http://github.com/maxogden/javascript-for-cats).
 
-### <a id="recommended-reading" href="#recommended-reading">#</a> Recommended reading
+### <a id="recommended-reading" href="#recommended-reading">#</a> 읽으면 좋다냥
 
-  JavaScript For Cats skips over lots of details that aren't important for getting started (cats are not known for their attention spans), but if you feel like you need to dive in deeper then check these out:
+  냥이를 위한 자바스크립트는 수많은 세세한 부분을 지나쳐. 시작하기에 중요하진 앟아서 말이야(고양이들이 그들의 집중력이 높다고 유명한 건 아니잖아), 그런데 만약에 좀 더 깊게 알고 싶다면 이것들을 확인해봐:
   
-  - [NodeSchool.io](http://nodeschool.io/) is a community driven, open source educational software that teaches various web development skills in an interactive, self-guided format. I helped make NodeSchool! Sadly it features fewer cats than this page. 
-  - [Eloquent Javascript](http://eloquentjavascript.net/) is a free book that teaches you JavaScript! It's pretty good! Especially the chapter on [values, variables, and control flow](http://eloquentjavascript.net/chapter2.html)
-  - [Mozilla's JavaScript Guide](https://developer.mozilla.org/en-US/docs/JavaScript/Guide) also has a pretty sweet intro chapter called [values, variables and literals](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Values,_variables,_and_literals)
-  - [`standard` JS Style Guide](https://github.com/feross/standard) is a "zero configuration" linter for JS style that I use
-  - [Let's Write Code by @shama](https://github.com/shama/letswritecode) a great series of YouTube coding tutorials made by a friend of mine
+  - [NodeSchool.io](http://nodeschool.io/) 은 커뮤니티에 주도되는데 다양한 웹개발 기술을 가르치는 쌍방향형의 스스로 안내가능한 형태의  오픈소스 교육 소프트웨어야. 난 NodeSchool을 만드는 데 일조했어! 슬프게도 이 페이지보다 고양이에 대한 걸 많이 다루진 않아.
+  - [Eloquent Javascript](http://eloquentjavascript.net/) 은 자바스크립트를 가르치는 무료책이야. 굉장히 좋아! 특히 [values, variables, and control flow](http://eloquentjavascript.net/chapter2.html)에서 말이야.
+  - [Mozilla's JavaScript Guide](https://developer.mozilla.org/en-US/docs/JavaScript/Guide) 도 완전 좋은 [values, variables and literals](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Values,_variables,_and_literals) 라 불리는 입문 챕터를 가지고 있어.
+  - [`standard` JS Style Guide](https://github.com/feross/standard) 은 내가 사용하는 자바스크립트 스타일을 위한 "제로 구성" 린터야.
+  - [Let's Write Code by @shama](https://github.com/shama/letswritecode) 내 친구 중 한 명이 만든 엄청난 유투브 코딩 강의 시리즈야.
 
 <hr>
-### <a id="satisfied-customers" href="#satisfied-customers">#</a> Satisfied customers
+### <a id="satisfied-customers" href="#satisfied-customers">#</a> 만족한 고객들
 <center>![satisfied customer](images/customers5.jpg)</center>
 <center>![satisfied customer](images/customers1.png)</center>
 <center>![satisfied customer](images/customers2.png)</center>
 <center>![satisfied customer](images/customers3.png)</center>
 <center>![satisfied customer](images/customers4.png)</center>
 
-*JSForCats.com is a labor of love and work in progress by [@maxogden](http://twitter.com/maxogden). If you would like to contribute and make this tutorial better there is a Github repo [right over here](http://github.com/maxogden/javascript-for-cats).*
+*JSForCats.com 은 [@maxogden](http://twitter.com/maxogden)의 사랑을 담은 노동의 결과이고 아직 진행중인 일이야. 만약에 네가 여기에 공헌하고 이 강의를 좀 더 좋게 만들고 싶다면 깃허브 저장소가 있으니 참고하라구! [바로 여기](http://github.com/maxogden/javascript-for-cats).*
 <center>![console](images/awesome.jpg)</center>

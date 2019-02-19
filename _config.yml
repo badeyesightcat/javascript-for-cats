@@ -1,0 +1,8 @@
+title: jsforcats
+description: information about javascript programming
+google_analytics: UA-34180924-1
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
